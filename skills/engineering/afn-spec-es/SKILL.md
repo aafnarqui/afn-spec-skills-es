@@ -70,10 +70,11 @@ Orden sugerido para `spec.md`:
 
 1. **Objetivo** (una frase).
 2. **Alcance** (incluye explícitamente lo que **no** está).
-3. **Requisitos funcionales** (numerados REQ-1, REQ-2…).
-4. **Modelo / datos** (si aplica).
-5. **Criterios de aceptación** (checklist verificable).
-6. **Riesgos y decisiones** (si aplica).
+3. **Rama git** (opcional pero recomendado): una línea `**Rama git:** feature/102030` o frontmatter `branch: feature/102030`. Si no hay tag, AFN usará `sdd/<change>` al implementar.
+4. **Requisitos funcionales** (numerados REQ-1, REQ-2…).
+5. **Modelo / datos** (si aplica).
+6. **Criterios de aceptación** (checklist verificable).
+7. **Riesgos y decisiones** (si aplica).
 
 Tras cada sección: «¿Queda así o ajustamos?»
 
