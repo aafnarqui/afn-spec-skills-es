@@ -41,21 +41,21 @@ Si `evaluateSddWizardImplementGate` fallaría, **no implementes**. Mostrá el me
 2. Listá tareas pendientes (`[ ]`).
 3. Confirmá con el usuario si arranca por la primera pendiente o por una ref concreta.
 
-### 2. Rama git (aislamiento — obligatorio en AFN IDE)
+### 2. Rama git / worktree (aislamiento — obligatorio en AFN IDE)
 
 Antes de codear, el IDE **bloquea** `/sdd-task-run` en repos git hasta confirmar:
 
-1. Chip **Crear/usar `<rama>`** → `/sdd-git-branch confirm <change>` → diálogo nativo → `git checkout` o `git checkout -b` si no existe.
-2. Chip **Continuar en rama actual** → `/sdd-git-branch skip <change>`.
-3. Alternativa: `/worktree` (carpeta aislada).
+1. Chip **Worktree + rama** → `/sdd-git-branch confirm <change>` → diálogo nativo → `git worktree add` en `.trees/sdd-<slug>/` + **abre esa carpeta** en el IDE (ahí van los writes).
+2. Chip **Solo checkout** → `/sdd-git-branch confirm-checkout <change>` → rama en la carpeta actual.
+3. Chip **Continuar sin aislar** → `/sdd-git-branch skip <change>`.
 
 **Origen del nombre de rama (prioridad):**
 
 1. `meta.json` → `gitSafety.branch`
-2. Tag en `spec.md`: frontmatter `branch:` / `gitBranch:`, o `**Rama git:** feature/102030`, o `<!-- afn:git-branch feature/102030 -->`
+2. Tag en `spec.md`: frontmatter `branch:` / `gitBranch:`, o `**Rama git:** feature/102030`
 3. Fallback: `sdd/<change>`
 
-**No** ejecutes `git checkout` a mano en el chat: usá los chips (confirmación nativa). Política: `agent.sddChangeGitBranch` en `.afn/context.json` (`requireConfirmBeforeTasks`, default `true`).
+Política: `agent.sddChangeGitBranch` en `.afn/context.json` (`isolationMode`: `worktree` default | `checkout`).
 
 ### 3. Implementar tarea por tarea
 
